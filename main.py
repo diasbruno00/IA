@@ -1,24 +1,20 @@
 
 import networkx as nx
+import numpy as np
+
 import csv
 
 G = nx.Graph()
 
-def salvarTxtMatriz(matriz):
-    with open('matriz.txt', 'w') as csvfile:
-        writer = csv.writer(csvfile, delimiter=' ')
-        writer.writerows(matriz)
 
-def gerarMatriz44X44(linha, coluna):
- 
-    matriz = []
-    for i in range(linha):
-        for j in range(coluna):
-            matriz.append((i, j))
-            G.add_node((i, j))
-    return matriz
+def addNos(G):
+    for y in range(42):
+            for x in range(42):
+                G.add_node((y, x))
 
-def criarArestas(G):
+                
+def criarArestas(G, matrizGerada):
+        
         for y in range(42):
             for x in range(42):
                 # Verifique os vizinhos (cima, baixo, esquerda, direita)
@@ -27,15 +23,15 @@ def criarArestas(G):
                     # Certifique-se de que os vizinhos estão dentro dos limites da matriz
                     if 0 <= ny < 42 and 0 <= nx < 42:
                         # Determine o custo da aresta com base no tipo de terreno
-                        if matrizGerada[ny][nx] == 'asfalto':
+                        if matrizGerada[ny][nx] == 'z':
                             custo = 1
-                        elif matrizGerada[ny][nx] == 'terra':
+                        elif matrizGerada[ny][nx] == 'm':
                             custo = 3
-                        elif matrizGerada[ny][nx] == 'grama':
+                        elif matrizGerada[ny][nx] == 't':
                             custo = 5
-                        elif matrizGerada[ny][nx] == 'paralelepípedo':
+                        elif matrizGerada[ny][nx] == 'b':
                             custo = 10
-                        elif matrizGerada[ny][nx] == 'edificio':
+                        elif matrizGerada[ny][nx] == 'a':
                             custo = float('inf')  # Defina o custo como infinito para evitar passar por regiões de edifícios
                         else:
                             custo = 0  # Caso o tipo de terreno não seja reconhecido, atribua um custo de 0
@@ -43,14 +39,17 @@ def criarArestas(G):
 
 
 def lerTxtMatriz():
-    matriz = []
+    matriz = [[]]
     with open('matriz.txt') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=' ')
-        matriz = [line for line in spamreader]
-
+        for line in spamreader:
+            matriz.append(line)
     return matriz
 
 
+matriz = lerTxtMatriz()
+addNos(G, matriz)
+print(G.nodes)  
+criarArestas(G, matriz)
 
-matrizGerada = gerarMatriz44X44(42,42)
-criarArestas(G)
+print(G.nodes)
