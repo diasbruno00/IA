@@ -130,21 +130,26 @@ def busca_a_estrela(grafo, inicio, objetivo):
     return caminho, custo_final
 
 
-def imprimir_grafo(caminho):
+def imprimirCaminho(caminho):
 
     for passo, posicao in enumerate(caminho):
         if caminho is None:
          print("Nenhum caminho encontrado")
          return
         else:
-            if posicao == (14, 32):
-                print(f"Rick chegou no primeiro objetivo! {posicao} \n")
+            if passo == (14, 32):
+                print(f"Rick chegou no objetivo! {posicao} \n")
+                return
             elif posicao == (36,36):
-                print(f"Rick chegou no segundo objetivo! {posicao} \n")
+                print(f"Rick chegou no objetivo! {posicao} \n")
+                return
             elif posicao == (6,33):
-                print(f"Rick chegou no terceiro objetivo! {posicao} \n")
+                print(f"Rick chegou no objetivo! {posicao} \n")
+                return
             elif posicao == (40,21):
                 print(f"Rick reuniu todo o grupo e saiu da prisão pela porta inferior! {posicao} \n")
+                return
+
 
 
 
@@ -200,18 +205,20 @@ print(f"Posição inicial de Rick: {rick} \n")
 
 inicio = rick
 
-objetivo =  [(14, 32) , (36,36), (6,33), (33,9), (40,21)]
+objetivo =  [  (36,36), (14,32), (6,33), (33, 9), (40,21)]
 
 caminhoPercorrido = []
 custoTotal = 0
 
 for objetivo in objetivo:
-    
+
+    print(f"Rick esta {inicio}")
+
     caminho, custoFinal = busca_a_estrela(G, inicio, objetivo)
     caminhoPercorrido.extend(caminho[1:])
     inicio = objetivo
     custoTotal += custoFinal
-    imprimir_grafo(caminho)
+    imprimirCaminho(caminho)
 
 
 print(f"Custo final: {custoTotal} \n")
