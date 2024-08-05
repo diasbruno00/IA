@@ -85,7 +85,6 @@ def criarArestas(G, matrizGerada):
 
 
 
-
 def heuristica(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
@@ -177,4 +176,12 @@ for objetivo in objetivo:
     
     imprimir_grafo(caminho)
 
-print(f"Custo final: {custoFinal}")
+print(f"Custo final: {custoFinal} \n")
+
+print("Alunos")
+
+print("Bruno Dias Pinto 18.2.8144")
+
+print("Caio Guilherme Costa Carvalho 18.2.8026")
+
+print("Pablo Batista de Andrade Reis - 20.1.8106")
