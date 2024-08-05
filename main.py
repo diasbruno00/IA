@@ -4,12 +4,25 @@ import numpy as np
 
 # Função para adicionar nós ao grafo
 def addNos(G):
+
+
     for y in range(42):
         for x in range(42):
             G.add_node((y, x))
+    
+    print("Grafo criado com sucesso! \n" )
+    
 
 # Função para criar arestas no grafo
 def criarArestas(G, matrizGerada):
+
+
+    # m = Terra
+    # t = verde
+    # b = cinza claro
+    # a = azul
+    # z = cinza escuro
+
     for y in range(42):
         for x in range(42):
             # Verifique os vizinhos (cima, baixo, esquerda, direita)
@@ -31,11 +44,14 @@ def criarArestas(G, matrizGerada):
                     else:
                         custo = 0  # Caso o tipo de terreno não seja reconhecido, atribua um custo de 0
                     G.add_edge((y, x), (ny, nx), weight=custo)
+    
+    print("Arestas criadas com sucesso! \n")
 
 # Função para ler o arquivo e gerar a matriz bidimensional
 def lerTxtMatriz():
-    # Inicializa uma matriz 42x42 com valor padrão 't'
+
     matriz = [['t' for _ in range(42)] for _ in range(42)]
+
 
     # Abre o arquivo matriz.txt para leitura
     with open('C:/Users/diasb/OneDrive/Área de Trabalho/Inteligencia artificial/teste/matriz.txt', 'r') as file:
@@ -45,6 +61,8 @@ def lerTxtMatriz():
             linha, coluna, cor = line.split()
             # Preenche a matriz com os valores do arquivo
             matriz[int(linha) - 1][int(coluna) - 1] = cor  # -1 para converter de 1-based para 0-based
+    
+    print("Matriz lida com sucesso! \n")
 
     return matriz
 
@@ -53,6 +71,7 @@ G = nx.Graph()
 
 # Lê a matriz do arquivo
 matriz = lerTxtMatriz()
+
 
 # Adiciona nós ao grafo
 addNos(G)
@@ -64,4 +83,6 @@ criarArestas(G, matriz)
 #print(list(G.nodes)[:10])
 
 # Exibe algumas arestas do grafo com os pesos para verificar se está funcionando corretamente
-print(list(G.edges(data=True)))
+#print(list(G.edges(data=True)))
+
+rick = (21, 13 )
