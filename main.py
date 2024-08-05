@@ -152,30 +152,17 @@ def imprimirCaminho(caminho):
                 
     return
 
-
-
 def imprimirMatrizAtualizada(matriz, caminho):
     # Criar uma cópia da matriz para não modificar a original
     matriz_copia = [['0' for _ in linha] for linha in matriz]
 
-    # Função para determinar a direção do movimento
-    def determinar_direcao(ponto1, ponto2):
-        if ponto1[0] == ponto2[0]:
-            return '→' if ponto1[1] < ponto2[1] else '←'
-        elif ponto1[1] == ponto2[1]:
-            return '↓' if ponto1[0] < ponto2[0] else '↑'
-        return ' '  # Caso não seja um movimento simples horizontal ou vertical
+    # Marcar cada ponto do caminho com '•'
+    for ponto in caminho:
+        x, y = ponto
+        if 0 <= x < len(matriz) and 0 <= y < len(matriz[0]):
+            matriz_copia[x][y] = '•'
 
-    # Marcar o caminho na matriz
-    for i in range(len(caminho) - 1):
-        x1, y1 = caminho[i]
-        x2, y2 = caminho[i + 1]
-        
-        if 0 <= x1 < len(matriz) and 0 <= y1 < len(matriz[0]):
-            direcao = determinar_direcao((x1, y1), (x2, y2))
-            matriz_copia[x1][y1] = direcao
-
-    # Marcar o último ponto do caminho com uma seta especial ou outro caractere
+    # Marcar o último ponto do caminho com um caractere especial, se desejar
     if caminho:
         x, y = caminho[-1]
         if 0 <= x < len(matriz) and 0 <= y < len(matriz[0]):
@@ -184,7 +171,6 @@ def imprimirMatrizAtualizada(matriz, caminho):
     # Imprimir a matriz
     for linha in matriz_copia:
         print(' '.join(str(celula) for celula in linha))
-
 
 
 # Cria o grafo
