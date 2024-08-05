@@ -206,7 +206,7 @@ caminhoPercorrido = []
 custoTotal = 0
 
 for objetivo in objetivo:
-    print(f"Rick está indo para {objetivo}")
+    
     caminho, custoFinal = busca_a_estrela(G, inicio, objetivo)
     caminhoPercorrido.extend(caminho[1:])
     inicio = objetivo
