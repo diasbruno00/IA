@@ -153,22 +153,19 @@ def imprimirCaminho(caminho):
     return
 
 def imprimirMatrizAtualizada(matriz, caminho):
-    # Criar uma cópia da matriz para não modificar a original
+    
     matriz_copia = [['0' for _ in linha] for linha in matriz]
 
-    # Marcar cada ponto do caminho com '•'
     for ponto in caminho:
         x, y = ponto
         if 0 <= x < len(matriz) and 0 <= y < len(matriz[0]):
             matriz_copia[x][y] = '•'
-
-    # Marcar o último ponto do caminho com um caractere especial, se desejar
+            
     if caminho:
         x, y = caminho[-1]
         if 0 <= x < len(matriz) and 0 <= y < len(matriz[0]):
             matriz_copia[x][y] = 'X'
 
-    # Imprimir a matriz
     for linha in matriz_copia:
         print(' '.join(str(celula) for celula in linha))
 
