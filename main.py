@@ -147,6 +147,9 @@ def imprimir_grafo(caminho):
                 print(f"Rick reuniu todo o grupo e saiu da prisão pela porta inferior! {posicao} \n")
 
 
+
+
+
 # Cria o grafo
 G = nx.Graph()
 
@@ -175,6 +178,7 @@ for objetivo in objetivo:
     caminho, custoFinal = busca_a_estrela(G, inicio, objetivo)
     
     imprimir_grafo(caminho)
+    inicio = objetivo
 
 print(f"Custo final: {custoFinal} \n")
 
