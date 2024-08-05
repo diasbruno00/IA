@@ -139,17 +139,18 @@ def imprimirCaminho(caminho):
         else:
             if posicao == (14, 32):
                 print(f"Rick chegou no objetivo! {posicao} \n")
-                return
-            elif posicao == (36,36):
+            if posicao == (36,36):
+                print(f"Rick chegou no objetivo! {posicao} \n") 
+            if posicao == (6,33):
                 print(f"Rick chegou no objetivo! {posicao} \n")
-                return
-            elif posicao == (6,33):
+            if posicao == (33,9):
                 print(f"Rick chegou no objetivo! {posicao} \n")
-                return
-            elif posicao == (40,21):
+            
+            if posicao == (40,21):
                 print(f"Rick reuniu todo o grupo e saiu da prisão pela porta inferior! {posicao} \n")
-                return
-
+                
+                
+    return
 
 
 
