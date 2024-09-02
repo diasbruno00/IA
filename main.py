@@ -152,26 +152,30 @@ def imprimirCaminho(caminho):
                 
     return
 
-def imprimirMatrizAtualizada(matriz, caminho):
-    # Criar uma cópia da matriz para não modificar a original
+def imprimir_matriz_atualizada(matriz, caminho, ultimo = (40,21)):
+    # Cria uma cópia da matriz original preenchida com '0'
     matriz_copia = [['0' for _ in linha] for linha in matriz]
 
-    # Marcar cada ponto do caminho com '•'
+    # Marca o caminho na matriz copiada
     for ponto in caminho:
         x, y = ponto
         if 0 <= x < len(matriz) and 0 <= y < len(matriz[0]):
             matriz_copia[x][y] = '•'
-
-    # Marcar o último ponto do caminho com um caractere especial, se desejar
-    if caminho:
+    
+    # Marca o último ponto do caminho como 'X'
+    if ultimo:
+        x, y = ultimo
+    elif caminho:
         x, y = caminho[-1]
-        if 0 <= x < len(matriz) and 0 <= y < len(matriz[0]):
-            matriz_copia[x][y] = 'X'
+    else:
+        x, y = None, None
 
-    # Imprimir a matriz
+    if x is not None and y is not None and 0 <= x < len(matriz) and 0 <= y < len(matriz[0]):
+        matriz_copia[x][y] = 'X'
+    
+    # Imprime a matriz atualizada
     for linha in matriz_copia:
         print(' '.join(str(celula) for celula in linha))
-
 
 # Cria o grafo
 G = nx.Graph()
@@ -211,13 +215,6 @@ for objetivo in objetivo:
 print(f"Custo final: {custoTotal} \n")
 
 if input("Deseja visualizar o caminho percorrido na matriz? (s/n): ").lower() == 's':
-    imprimirMatrizAtualizada( matriz, caminhoPercorrido)
+    imprimir_matriz_atualizada( matriz, caminhoPercorrido)
 
 
-print("Alunos")
-
-print("Bruno Dias Pinto 18.2.8144")
-
-print("Caio Guilherme Costa Carvalho 18.2.8026")
-
-print("Pablo Batista de Andrade Reis - 20.1.8106")
